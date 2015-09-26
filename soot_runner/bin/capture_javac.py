@@ -8,6 +8,7 @@ import pprint
 
 import arg
 import log
+import soot
 
 def log_header():
     logging.info('Running command %s', ' '.join(sys.argv))
@@ -24,6 +25,8 @@ def main():
 
     results = imported_module.gen_instance(args, cmd).capture()
     logging.info('Results: %s', pprint.pformat(results))
+    soot.run_soot(results)
+
 
 if __name__ == '__main__':
     main()
