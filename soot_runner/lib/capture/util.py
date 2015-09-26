@@ -11,7 +11,6 @@ import argparse
 import os
 import logging
 import subprocess
-import inferlib
 import traceback
 
 def get_build_output(build_cmd):
