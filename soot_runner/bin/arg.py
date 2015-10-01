@@ -40,6 +40,8 @@ base_group.add_argument('-i', '--incremental', action='store_true',
 base_group.add_argument('--log_to_stderr', action='store_true',
                         help='''When set, all logging will go to stderr instead
                         of log file''')
+base_group.add_argument('-n', '--no-soot', action='store_true',
+                        help='''When set, soot will not be run after analysis.''')
 
 def get_commands():
     """Return all commands that are supported."""

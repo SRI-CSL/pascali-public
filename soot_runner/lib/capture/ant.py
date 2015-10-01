@@ -5,32 +5,27 @@
 # LICENSE file in the root directory of this source tree. An additional grant
 # of patent rights can be found in the PATENTS file in the same directory.
 
-import os
-import logging
 import util
+import generic
 
 MODULE_NAME = __name__
 MODULE_DESCRIPTION = '''Run analysis of code built with a command like:
 ant [options] [target]
 
 Analysis examples:
-infer -- ant compile'''
+capture_javac.py -- ant compile'''
 
-def gen_instance(*args):
-    return AntCapture(*args)
+def gen_instance(cmd):
+    return AntCapture(cmd)
 
 # This creates an empty argparser for the module, which provides only
 # description/usage information and no arguments.
 create_argparser = util.base_argparser(MODULE_DESCRIPTION, MODULE_NAME)
 
 
-class AntCapture:
+class AntCapture(generic.GenericCapture):
 
-    def __init__(self, args, cmd):
-        self.args = args
-        util.log_java_version()
-        logging.info(util.run_cmd_ignore_fail(['ant', '-version']))
-        # TODO: make the extraction of targets smarter
+    def __init__(self, cmd):
         self.build_cmd = ['ant', '-verbose'] + cmd[1:]
 
     def is_interesting(self, content):
@@ -69,6 +64,3 @@ class AntCapture:
         if javac_arguments != []:
             javac_commands.append(javac_arguments)
         return javac_commands
-
-    def capture(self):
-        return map(util.javac_parse,self.get_javac_commands(util.get_build_output(self.build_cmd)))

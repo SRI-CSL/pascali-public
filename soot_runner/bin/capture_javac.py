@@ -23,9 +23,11 @@ def main():
 
     log_header()
 
-    results = imported_module.gen_instance(args, cmd).capture()
+    results = imported_module.gen_instance(cmd).capture()
     logging.info('Results: %s', pprint.pformat(results))
-    soot.run_soot(results)
+
+    if not args.no_soot:
+        soot.run_soot(results)
 
 
 if __name__ == '__main__':
