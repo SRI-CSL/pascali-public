@@ -10,6 +10,7 @@ import arg
 import log
 import soot
 import inference
+import checker
 def log_header():
     logging.info('Running command %s', ' '.join(sys.argv))
     logging.info('Platform: %s', platform.platform())
@@ -26,6 +27,7 @@ def main():
     results = imported_module.gen_instance(args, cmd).capture()
     logging.info('Results: %s', pprint.pformat(results))
     #soot.run_soot(results)
+    #checker.run_checker(results)
     inference.run_inference(results)
 
 if __name__ == '__main__':
