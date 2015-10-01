@@ -34,7 +34,7 @@ base_group.add_argument('-o', '--out', metavar='<directory>',
                         action=AbsolutePathAction,
                         help='Set the results directory')
 base_group.add_argument('-t', '--tool', metavar='<directory>',
-                        action='store',
+                        action='store',default='soot',
                         help='choose a tool to run')
 base_group.add_argument('-i', '--incremental', action='store_true',
                      help='''Do not delete the results directory across
