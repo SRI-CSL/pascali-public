@@ -63,4 +63,4 @@ class AntCapture(generic.GenericCapture):
                         javac_arguments.append(arg)
         if javac_arguments != []:
             javac_commands.append(javac_arguments)
-        return javac_commands
+        return map(self.javac_parse, javac_commands)

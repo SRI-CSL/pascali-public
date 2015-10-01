@@ -38,4 +38,4 @@ class GradleCapture(generic.GenericCapture):
                 content = line.partition(argument_start_pattern)[2].strip()
                 results.append(content.split(' '))
 
-        return results
+        return map(self.javac_parse, results)

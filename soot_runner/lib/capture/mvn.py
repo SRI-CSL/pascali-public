@@ -52,4 +52,4 @@ class MavenCapture(generic.GenericCapture):
                 if found:
                     files_to_compile.append(found.group(1))
 
-        return javac_commands
+        return map(self.javac_parse, javac_commands)

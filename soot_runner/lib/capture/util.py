@@ -44,35 +44,3 @@ def base_argparser(description, module_name):
         )
         return parser
     return _func
-
-def is_switch(s):
-    return s != None and s.startswith('-')
-
-def javac_parse(javac_command):
-    files = []
-    switches = {}
-
-    prev_arg = None
-
-    for a in javac_command:
-        possible_switch_arg = True
-
-        if is_switch(a):
-            possible_switch_arg = False
-
-        if a.endswith('.java'):
-            files.append(a)
-            possible_switch_arg = False
-
-        if is_switch(prev_arg):
-            if possible_switch_arg:
-                switches[prev_arg[1:]] = a
-            else:
-                switches[prev_arg[1:]] = True
-
-        if is_switch(a):
-            prev_arg = a
-        else:
-            prev_arg = None
-
-    return dict(java_files=files, javac_switches=switches)
