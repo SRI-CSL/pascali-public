@@ -33,10 +33,12 @@ base_group.add_argument('-o', '--out', metavar='<directory>',
                         default=DEFAULT_OUTPUT_DIRECTORY, dest='output_directory',
                         action=AbsolutePathAction,
                         help='Set the results directory')
+base_group.add_argument('-t', '--tool', metavar='<directory>',
+                        action='store',
+                        help='choose a tool to run')
 base_group.add_argument('-i', '--incremental', action='store_true',
                      help='''Do not delete the results directory across
                         runs''')
-
 base_group.add_argument('--log_to_stderr', action='store_true',
                         help='''When set, all logging will go to stderr instead
                         of log file''')
@@ -102,7 +104,6 @@ def load_module(mod_name):
 def parse_args():
     to_parse, cmd, mod_name = split_args_to_parse()
     # get the module name (if any), then load it
-
     imported_module = None
     if mod_name:
         imported_module = load_module(mod_name)
