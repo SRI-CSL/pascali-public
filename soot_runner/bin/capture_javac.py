@@ -11,14 +11,14 @@ import soot
 import inference
 import checker
 
-def soot_tool(results):    
+def soot_tool(results,args):    
     soot.run_soot(results)
 
-def checker_tool(results):
-    checker.run_checker(results)
+def checker_tool(results,args):
+    checker.run_checker(results,args)
 
-def inference_tool(results):
-    inference.run_inference(results)
+def inference_tool(results,args):
+    inference.run_inference(results,args)
 
 def log_header():
     logging.info('Running command %s', ' '.join(sys.argv))
@@ -40,7 +40,7 @@ def main():
                'checker' : checker_tool,
                'inference' : inference_tool,
     }
-    options[args.tool](results)
+    options[args.tool](results,args)
 
 if __name__ == '__main__':
     main()
