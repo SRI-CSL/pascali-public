@@ -20,9 +20,11 @@ def run_inference(javac_commands,args):
 		javac_switches = jc['javac_switches']
 		cp = javac_switches['classpath']
 		java_files = ' '.join(jc['java_files'])
-		cp = cp +":"+ CFI_dist + "/checker.jar:" + CFI_dist + "/plume.jar:" + CFI_dist + "/checker-framework-inference.jar"
+		cp = cp +":"+ CFI_dist + "/checker.jar:" + CFI_dist + "/plume.jar:" + \
+		     CFI_dist + "/checker-framework-inference.jar"
 		cmd = CFI_command + ["-classpath", cp, "checkers.inference.InferenceLauncher" , 
-				     "--checker" ,args.checker, "--solver", args.solver , "--mode" , args.mode , java_files]
+				     "--checker" ,args.checker, "--solver", args.solver , 
+				     "--mode" , args.mode , java_files]
 		print ("Running %s" % cmd)
 		try:
 			print (subprocess.check_output(cmd, stderr=subprocess.STDOUT))
