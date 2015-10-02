@@ -8,17 +8,17 @@ import pprint
 import arg
 import log
 import soot
-import inference
-import checker
+import infer
+import check
 
 def soot_tool(results,args):    
     soot.run_soot(results)
 
 def checker_tool(results,args):
-    checker.run_checker(results,args)
+    check.run_checker(results,args)
 
 def inference_tool(results,args):
-    inference.run_inference(results,args)
+    infer.run_inference(results,args)
 
 def log_header():
     logging.info('Running command %s', ' '.join(sys.argv))
