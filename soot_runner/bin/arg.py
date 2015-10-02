@@ -33,16 +33,16 @@ base_group.add_argument('-o', '--out', metavar='<directory>',
                         default=DEFAULT_OUTPUT_DIRECTORY, dest='output_directory',
                         action=AbsolutePathAction,
                         help='Set the results directory')
-base_group.add_argument('-t', '--tool', metavar='<directory>',
+base_group.add_argument('-t', '--tool', metavar='<tool>',
                         action='store',default='soot',
                         help='choose a tool to run')
-base_group.add_argument('-c', '--checker', metavar='<directory>',
+base_group.add_argument('-c', '--checker', metavar='<checker>',
                         action='store',default='NullnessChecker',
                         help='choose a checker to check')
-base_group.add_argument('-s', '--solver', metavar='<directory>',
+base_group.add_argument('-s', '--solver', metavar='<solver>',
                         action='store',default='checkers.inference.solver.DebugSolver',
                         help='solver to use on constraints')
-base_group.add_argument('-m', '--mode', metavar='<directory>',
+base_group.add_argument('-m', '--mode', metavar='<mode>',
                         action='store',default='INFER',
                         help='Modes of operation: TYPECHECK, INFER, ROUNDTRIP,ROUNDTRIP_TYPECHECK')
 base_group.add_argument('-i', '--incremental', action='store_true',
