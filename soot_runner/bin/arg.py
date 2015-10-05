@@ -35,7 +35,7 @@ base_group.add_argument('-o', '--out', metavar='<directory>',
                         help='Set the results directory')
 base_group.add_argument('-t', '--tool', metavar='<tool>',
                         action='store',default=None,
-                        help='choose a tool to run')
+                        help='choose a tool to run. Valid tools include soot, checker, and inference.')
 base_group.add_argument('-c', '--checker', metavar='<checker>',
                         action='store',default='NullnessChecker',
                         help='choose a checker to check')

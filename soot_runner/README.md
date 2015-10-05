@@ -7,6 +7,8 @@ To run, invoke from the directory of the project you want to analyze:
 
 Where PATH/TO is the full path to this directory, and "ant build" is replaced by whatever command builds your project. Output will be emitted to logs/toplevel.log
 
+You may also run a checing tool on the discovered java files, by invoking with the -t option and a tool to use (e.g. "-t soot", "-t inference" or "-t checker").
+
 LICENSE
 =======
 
