@@ -33,15 +33,24 @@ base_group.add_argument('-o', '--out', metavar='<directory>',
                         default=DEFAULT_OUTPUT_DIRECTORY, dest='output_directory',
                         action=AbsolutePathAction,
                         help='Set the results directory')
+base_group.add_argument('-t', '--tool', metavar='<tool>',
+                        action='store',default=None,
+                        help='choose a tool to run')
+base_group.add_argument('-c', '--checker', metavar='<checker>',
+                        action='store',default='NullnessChecker',
+                        help='choose a checker to check')
+base_group.add_argument('-s', '--solver', metavar='<solver>',
+                        action='store',default='checkers.inference.solver.DebugSolver',
+                        help='solver to use on constraints')
+base_group.add_argument('-m', '--mode', metavar='<mode>',
+                        action='store',default='INFER',
+                        help='Modes of operation: TYPECHECK, INFER, ROUNDTRIP,ROUNDTRIP_TYPECHECK')
 base_group.add_argument('-i', '--incremental', action='store_true',
                      help='''Do not delete the results directory across
                         runs''')
-
 base_group.add_argument('--log_to_stderr', action='store_true',
                         help='''When set, all logging will go to stderr instead
                         of log file''')
-base_group.add_argument('-n', '--no-soot', action='store_true',
-                        help='''When set, soot will not be run after analysis.''')
 
 def get_commands():
     """Return all commands that are supported."""
@@ -104,7 +113,6 @@ def load_module(mod_name):
 def parse_args():
     to_parse, cmd, mod_name = split_args_to_parse()
     # get the module name (if any), then load it
-
     imported_module = None
     if mod_name:
         imported_module = load_module(mod_name)

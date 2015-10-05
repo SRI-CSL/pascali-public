@@ -5,10 +5,20 @@ import os
 import sys
 import platform
 import pprint
-
 import arg
 import log
 import soot
+import infer
+import check
+
+def soot_tool(results,args):    
+    soot.run_soot(results)
+
+def checker_tool(results,args):
+    check.run_checker(results,args)
+
+def inference_tool(results,args):
+    infer.run_inference(results,args)
 
 def log_header():
     logging.info('Running command %s', ' '.join(sys.argv))
@@ -26,9 +36,13 @@ def main():
     results = imported_module.gen_instance(cmd).capture()
     logging.info('Results: %s', pprint.pformat(results))
 
-    if not args.no_soot:
-        soot.run_soot(results)
+    options = {'soot' : soot_tool,
+               'checker' : checker_tool,
+               'inference' : inference_tool,
+    }
 
+    if args.tool:
+        options[args.tool](results,args)
 
 if __name__ == '__main__':
     main()
