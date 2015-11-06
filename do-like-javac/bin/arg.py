@@ -3,9 +3,9 @@ import os
 import sys
 import imp
 
-DEFAULT_OUTPUT_DIRECTORY = os.path.join(os.getcwd(), 'soot-out')
+DEFAULT_OUTPUT_DIRECTORY = os.path.join(os.getcwd(), 'dljc-out')
 
-# token that identifies the end of the options for infer and the beginning
+# token that identifies the end of the options for do-like-javac and the beginning
 # of the compilation command
 CMD_MARKER = '--'
 
@@ -90,8 +90,8 @@ def create_argparser(parents=[]):
         dest='nullarg',
         default=None,
         help=('Command to run the compiler/build-system. '
-              'Supported build commands (run `infer --help -- <cmd_name>` for '
-              'extra help, e.g. `infer --help -- javac`): ' + supported_commands),
+              'Supported build commands (run `do-like-javac.py --help -- <cmd_name>` for '
+              'extra help, e.g. `do-like-javac.py --help -- ant`): ' + supported_commands),
     )
     return parser
 
