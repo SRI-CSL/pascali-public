@@ -10,6 +10,7 @@ import log
 import soot
 import infer
 import check
+import jprint
 
 def soot_tool(results,args):    
     soot.run_soot(results)
@@ -19,6 +20,10 @@ def checker_tool(results,args):
 
 def inference_tool(results,args):
     infer.run_inference(results,args)
+
+def print_tool(results,args):
+    jprint.run_printer(results)
+
 
 def log_header():
     logging.info('Running command %s', ' '.join(sys.argv))
@@ -39,6 +44,7 @@ def main():
     options = {'soot' : soot_tool,
                'checker' : checker_tool,
                'inference' : inference_tool,
+               'print' : print_tool,
     }
 
     if args.tool:
