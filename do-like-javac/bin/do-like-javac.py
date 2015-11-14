@@ -11,6 +11,7 @@ import soot
 import infer
 import check
 import jprint
+import randoop
 
 def soot_tool(results,args):    
     soot.run_soot(results)
@@ -23,6 +24,9 @@ def inference_tool(results,args):
 
 def print_tool(results,args):
     jprint.run_printer(results)
+
+def randoop_tool(results,args):
+    randoop.run_randoop(results)
 
 
 def log_header():
@@ -45,6 +49,7 @@ def main():
                'checker' : checker_tool,
                'inference' : inference_tool,
                'print' : print_tool,
+               'randoop' : randoop_tool,
     }
 
     if args.tool:
