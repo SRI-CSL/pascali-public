@@ -76,19 +76,19 @@ def run_randoop(javac_commands):
 
 		junit_run_cmd = ['java', '-classpath', os.pathsep.join(junit_run_cp), "org.junit.runner.JUnitCore", 'RandoopTest']
 
-		print "Run the following to execute Randoop:"
-
-		print " ".join(randoop_cmd)
-
-		print "\n\nRun the following to build the unit tests:"
-
-		print " ".join(junit_build_cmd)
-
-		print "\n\nRun the following to run the unit tests:"
-
-		print " ".join(junit_run_cmd)
-
-		print "\n\nThat's it."
+		bash_script_name = "run_randoop_%04d.sh" % (i)
+		with open(bash_script_name, mode='w') as myfile:
+			myfile.write("#!/bin/bash\n")
+			myfile.write("echo \"Run Randoop\"\n")
+			myfile.write(" ".join(randoop_cmd))
+			myfile.write("\n")
+			myfile.write("echo \"Build tests\"\n")
+			myfile.write(" ".join(junit_build_cmd))
+			myfile.write("\n")
+			myfile.write("echo \"Run tests\"\n")
+			myfile.write(" ".join(junit_run_cmd))
+			myfile.write("\n")
+		print ("Written script to %s" % bash_script_name)
 
 		i += 1
 
