@@ -13,6 +13,7 @@ CMD_MARKER = '--'
 # compiler/build-systems it handles.
 # All supported commands should be listed here
 MODULE_TO_COMMAND = {
+    'javac': ['javac'],
     'ant': ['ant'],
     'gradle': ['gradle', 'gradlew'],
     'mvn': ['mvn']
