@@ -43,6 +43,9 @@ base_group.add_argument('-c', '--checker', metavar='<checker>',
 base_group.add_argument('-s', '--solver', metavar='<solver>',
                         action='store',default='checkers.inference.solver.DebugSolver',
                         help='solver to use on constraints')
+base_group.add_argument('-afud', '--afuOutputDir', metavar='<afud>',
+                        action='store',default='afud/',
+                        help='Annotation File Utilities output directory')
 base_group.add_argument('-m', '--mode', metavar='<mode>',
                         action='store',default='INFER',
                         help='Modes of operation: TYPECHECK, INFER, ROUNDTRIP,ROUNDTRIP_TYPECHECK')
