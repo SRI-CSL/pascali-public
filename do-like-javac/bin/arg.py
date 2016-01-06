@@ -55,6 +55,9 @@ base_group.add_argument('-i', '--incremental', action='store_true',
 base_group.add_argument('--log_to_stderr', action='store_true',
                         help='''When set, all logging will go to stderr instead
                         of log file''')
+base_group.add_argument('-j', '--jar', metavar='<jar>',
+                        action='store',default=None,
+                        help='Set the path to either prog2dfg.jar or apilearner.jar.')
 
 def get_commands():
     """Return all commands that are supported."""

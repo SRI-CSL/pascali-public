@@ -24,8 +24,8 @@ def create_results_dir(results_dir):
         pass
 
 def configure_logging(output_directory, incremental, log_to_stderr):
-    if not incremental:
-        remove_output_directory(output_directory)
+    #if not incremental:
+    #    remove_output_directory(output_directory)
 
     create_results_dir(output_directory)
 

@@ -10,7 +10,7 @@ import traceback
 def run_printer(javac_commands):
 	pp = pprint.PrettyPrinter(indent=2)
 	for jc in javac_commands:		
-		#pp.pprint(jc)
+		pp.pprint(jc)
 		javac_switches = jc['javac_switches']
 		cp = javac_switches['classpath']
 

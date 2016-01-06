@@ -12,6 +12,7 @@ import infer
 import check
 import jprint
 import randoop
+import graphtools
 
 def soot_tool(results,args):    
     soot.run_soot(results)
@@ -27,6 +28,9 @@ def print_tool(results,args):
 
 def randoop_tool(results,args):
     randoop.run_randoop(results)
+
+def graph_tool(results,args):
+    graphtools.run(results,args)
 
 
 def log_header():
@@ -50,6 +54,7 @@ def main():
                'inference' : inference_tool,
                'print' : print_tool,
                'randoop' : randoop_tool,
+               'graphtool' : graph_tool,
     }
 
     if args.tool:
