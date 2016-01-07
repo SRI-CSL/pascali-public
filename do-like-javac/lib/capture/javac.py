@@ -26,7 +26,8 @@ create_argparser = util.base_argparser(MODULE_DESCRIPTION, MODULE_NAME)
 class JavaCapture(generic.GenericCapture):
 
     def __init__(self, cmd):
+    	self.build_cmd = cmd
         self.cmd = cmd[1:]
 
-    def capture(self):
+    def get_javac_commands(self, verbose_output):
         return map(self.javac_parse, [self.cmd])
