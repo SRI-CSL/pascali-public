@@ -16,13 +16,12 @@ def run_tool(jarfile, javac_commands, outdir):
 	tool_command = []
 	tool_command.extend(["java", "-jar", jarfile])
 	
-
+	pp = pprint.PrettyPrinter(indent=2)
 	for jc in javac_commands:
-		pprint.pformat(jc)
+		pp.pformat(jc)
 		#jc['java_files']
-		javac_switches = jc['javac_switches']
-		cp = javac_switches['classpath']
-		class_dir = javac_switches['d']
+		javac_switches = jc['javac_switches']		
+		class_dir = os.path.abspath(javac_switches['d'])
 
 		java_files = jc['java_files']
 		java_files_file = os.path.join(os.getcwd(), '__java_file_names.txt')
@@ -31,10 +30,10 @@ def run_tool(jarfile, javac_commands, outdir):
 				f.write(s)
 				f.write("\n")
 
-		current_outdir = "{}{}".format(outdir, class_dir.replace(os.getcwd(),'').replace(os.sep,"_"))
+		current_outdir = os.path.join(outdir, class_dir.replace(os.getcwd(),'').replace(os.sep,"_"))
 
 		cmd = tool_command + ["-o", current_outdir, "-j", class_dir, "-source", java_files_file ]
-		print ("Running %s" % cmd)
+		print ("Running %s" % ' '.join(cmd))
 		try:
 			print (subprocess.check_output(cmd, stderr=subprocess.STDOUT))
 		except:
