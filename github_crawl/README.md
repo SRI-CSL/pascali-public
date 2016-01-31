@@ -6,6 +6,8 @@ You can add more organizations to org_list.txt.
 
 The script will ask you for your GitHub credentials because there is only a small number of API queries that you can make without being authenticated. The script doesn't store your credentials anywhere.
 
+Also added find_repos.py which prints the top 30 repos sorted by number of stars.
+
 Below is the list of repos it finds for the current org_list:
 
 
