@@ -28,6 +28,18 @@ class MavenCapture(generic.GenericCapture):
     def __init__(self, cmd):
         self.build_cmd = ['mvn', '-X'] + cmd[1:]
 
+    def get_target_jars(self, verbose_output):
+        jar_pattern = '[INFO] Building jar: '
+        jars = []
+
+        for line in verbose_output:
+            if jar_pattern in line:
+                pos = line.index(jar_pattern) + len(jar_pattern)
+                jar = line[pos:].strip()
+                jars.append(jar)
+
+        return jars
+
     def get_javac_commands(self, verbose_output):
         file_pattern = r'\[DEBUG\] Stale source detected: ([^ ]*\.java)'
         options_pattern = '[DEBUG] Command line options:'

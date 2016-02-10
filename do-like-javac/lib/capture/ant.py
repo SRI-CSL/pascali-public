@@ -42,6 +42,18 @@ class AntCapture(generic.GenericCapture):
         else:
             return argument
 
+    def get_target_jars(self, verbose_output):
+        jar_pattern = '[jar] Building jar: '
+        jars = []
+
+        for line in verbose_output:
+            if jar_pattern in line:
+                pos = line.index(jar_pattern) + len(jar_pattern)
+                jar = line[pos:].strip()
+                jars.append(jar)
+
+        return jars
+
     def get_javac_commands(self, verbose_output):
         javac_pattern = '[javac]'
         argument_start_pattern = 'Compilation arguments'

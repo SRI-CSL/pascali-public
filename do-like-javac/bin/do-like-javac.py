@@ -14,22 +14,22 @@ import jprint
 import randoop
 import graphtools
 
-def soot_tool(results,args):    
+def soot_tool(results,jars,args):
     soot.run_soot(results)
 
-def checker_tool(results,args):
+def checker_tool(results,jars,args):
     check.run_checker(results,args)
 
-def inference_tool(results,args):
+def inference_tool(results,jars,args):
     infer.run_inference(results,args)
 
-def print_tool(results,args):
-    jprint.run_printer(results)
+def print_tool(results,jars,args):
+    jprint.run_printer(results, jars)
 
-def randoop_tool(results,args):
+def randoop_tool(results,jars,args):
     randoop.run_randoop(results)
 
-def graph_tool(results,args):
+def graph_tool(results,jars,args):
     graphtools.run(results,args)
 
 
@@ -46,8 +46,8 @@ def main():
 
     log_header()
 
-    results = imported_module.gen_instance(cmd).capture()
-    logging.info('Results: %s', pprint.pformat(results))
+    javac_commands, jars = imported_module.gen_instance(cmd).capture()
+    logging.info('Results: %s', pprint.pformat(javac_commands))
 
     options = {'soot' : soot_tool,
                'checker' : checker_tool,
@@ -58,7 +58,7 @@ def main():
     }
 
     if args.tool:
-        options[args.tool](results,args)
+        options[args.tool](javac_commands,jars,args)
 
 if __name__ == '__main__':
     main()
